@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경쟁사 제원 비교 — 카탈로그 제원 표준화·인양력 비교</title>
+<meta name="description" content="경쟁사 카탈로그(PDF 텍스트·붙여넣기·엑셀)의 제원을 표준 항목과 표준 단위로 맞춰 모델별 비교표·차이 강조·막대 그래프·인양력 격자 비교를 만들고 엑셀로 내보냅니다. 파일은 브라우저 안에서만 처리합니다.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://build-2611-03.jobability.co.kr/">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="생성형 AI 업무자동화 전문가과정 · 2차수">
+<meta property="og:url" content="https://build-2611-03.jobability.co.kr/">
+<meta property="og:title" content="경쟁사 제원 비교 — 생성형 AI 업무자동화 전문가과정 2차수">
+<meta property="og:description" content="카탈로그 제원을 표준 항목·표준 단위로 맞춰 비교표·차이·그래프·인양력 비교·엑셀을 만듭니다.">
+<meta property="og:image" content="https://build-2611-03.jobability.co.kr/og-index.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<nav class="topnav" aria-label="주요 메뉴">
+  <div class="topnav-inner">
+    <a class="topnav-brand" href="index.html">경쟁사 제원 비교 <small>build-2611-03 · 기획 조민규</small></a>
+    <ul class="topnav-links">
+      <li><a href="#s-input">카탈로그</a></li>
+      <li><a href="#s-compare">비교표</a></li>
+      <li><a href="#s-lift">인양력</a></li>
+      <li><a href="#s-ai">AI(선택)</a></li>
+      <li><a href="guide.html">사용법</a></li>
+      <li><a href="plan.html">기획서</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">생성형 AI 업무자동화 전문가과정 · 2차수 · 프로젝트 03</div>
+  <h1>경쟁사 제원 비교</h1>
+  <p>경쟁사 카탈로그를 붙여 넣거나 올리면 제원을 <b>표준 항목·표준 단위</b>로 맞춥니다.
+     hp·lb·ft-in·kgf 같은 단위는 자동으로 환산하고, <b>모델별 비교표·차이 강조·막대 그래프</b>와
+     <b>인양력 격자 비교</b>를 만들어 엑셀로 내보냅니다.</p>
+</div></header>
+
+<main><div class="wrap">
+
+<section id="s-input" class="card">
+  <h2 style="margin-top:0">1. 카탈로그 제원을 넣으세요</h2>
+  <p class="sub">PDF(글자가 있는 PDF) · 엑셀(.xlsx) · 글(.txt)을 올리거나, 카탈로그의 제원표를 복사해 아래 칸에 붙여 넣습니다.
+     한 줄에 「항목 값 단위」 하나씩이면 됩니다. 제조사마다 다른 항목 이름은 별칭 표로 맞춥니다.</p>
+  <label class="drop" id="drop">
+    <input type="file" id="file" accept=".pdf,.xlsx,.xls,.csv,.txt" multiple>
+    <b>카탈로그 파일을 끌어다 놓거나 눌러서 고르세요</b>
+    <span>파일은 서버로 올라가지 않습니다 · 브라우저 안에서만 읽습니다</span>
+  </label>
+  <div class="form">
+    <label>모델 이름 <input type="text" id="m-name" placeholder="예: A사 AX-55"></label>
+    <label class="wide">카탈로그 글 (붙여넣기)
+      <textarea id="m-text" rows="8" placeholder="운전중량	5,450 kg&#10;엔진 정격출력	36.2 kW (48.5 hp)&#10;Bucket breakout force  9,050 lbf&#10;Overall length  18' 5&quot;"></textarea></label>
+  </div>
+  <div class="btnrow">
+    <button class="btn primary" id="btn-read">이 글을 모델로 읽기</button>
+    <button class="btn primary" id="btn-sample">예제로 해보기</button>
+    <button class="btn" id="btn-template">빈 양식 내려받기</button>
+  </div>
+  <div id="in-status"></div>
+  <div id="models" class="models"></div>
+</section>
+
+<section id="s-compare" class="card" hidden>
+  <h2 style="margin-top:0">2. 제원 비교표</h2>
+  <div class="ctrl">
+    <label>기준 모델 <select id="base"></select></label>
+    <label>보기 단위
+      <select id="sys"><option value="si">SI (kW·kg·kN·mm)</option><option value="imp">영미 (hp·lb·lbf·ft-in)</option></select></label>
+    <label>차이 강조 <input type="number" id="thr" value="5" min="0" step="1" style="width:70px"> % 이상</label>
+  </div>
+  <div class="legend">
+    <span><span class="tag t-conv">환산</span> 다른 단위에서 바꾼 값</span>
+    <span><span class="tag t-calc">계산</span> 문서 값으로 계산한 값</span>
+    <span><span class="tag t-assume">단위 가정</span> 단위 표기가 없던 값</span>
+    <span><span class="tag t-so">S</span> 표준 <span class="tag t-so">O</span> 옵션</span>
+    <span><i class="sw adv"></i>기준보다 유리</span><span><i class="sw dis"></i>기준보다 불리</span><span><i class="sw diff"></i>차이(우열 없음)</span>
+  </div>
+  <div id="cmp-sum"></div>
+  <div class="tablewrap" id="cmp"></div>
+  <p class="sub" style="margin-top:8px">칸을 누르면 원문과 환산 과정이 아래에 나옵니다. 차이(%)는 기준 모델 대비입니다.</p>
+  <div id="cell-why"></div>
+  <h3>Standard / Option 사양</h3>
+  <div class="tablewrap" id="feat"></div>
+  <h3>항목별 막대 그래프</h3>
+  <div class="ctrl"><label>항목 <select id="bar-field"></select></label></div>
+  <div id="bars" class="chart"></div>
+  <h3>기준 대비 차이(%)</h3>
+  <div class="ctrl"><label>비교 모델 <select id="diff-model"></select></label></div>
+  <div id="diffbars" class="chart"></div>
+  <div class="btnrow">
+    <button class="btn green" id="btn-export">엑셀로 내보내기</button>
+  </div>
+</section>
+
+<section id="s-lift" class="card" hidden>
+  <h2 style="margin-top:0">3. 인양력 비교 (높이 × 반경)</h2>
+  <p class="sub">인양력 표를 붙여 넣습니다. 첫 줄은 반경, 첫 칸은 높이입니다. 「정면」「측면」 줄로 방향을 나누고, 별표(*)는 유압 한계로 읽습니다.
+     하중 단위(kg·lb)와 길이 단위(m·ft)는 표기를 읽어 kg·mm 로 맞춥니다. 이미지로 된 표는 4번(AI)으로 초안을 만든 뒤 원본과 대조하세요.</p>
+  <div class="form">
+    <label>모델 <select id="l-model"></select></label>
+    <label class="wide">인양력 표 (붙여넣기)
+      <textarea id="l-text" rows="7" placeholder="단위: kg&#10;정면&#10;높이 \ 반경	3.0 m	4.0 m	5.0 m&#10;3.0 m	1,180*	910*	720"></textarea></label>
+  </div>
+  <div class="btnrow"><button class="btn primary" id="btn-lift">이 표를 인양력으로 읽기</button></div>
+  <div id="lift-status"></div>
+  <div class="ctrl" style="margin-top:14px">
+    <label>A <select id="la"></select></label>
+    <label>B <select id="lb"></select></label>
+    <label>방향 <select id="ldir"><option value="front">정면</option><option value="side">측면(360°)</option><option value="any">방향 미지정</option></select></label>
+    <label>같은 점 허용 오차 <input type="number" id="ltol" value="100" min="0" step="10" style="width:80px"> mm</label>
+  </div>
+  <div id="lift-out"></div>
+</section>
+
+<section id="s-ai" class="card">
+  <h2 style="margin-top:0">4. 이미지 표 추출 (선택 · AI)</h2>
+  <p class="sub">이미지로 된 제원표·인양력 표를 글로 옮기는 <b>초안</b>만 만듭니다. 키가 없어도 1~3번은 모두 동작합니다.
+     결과는 「AI 초안 — 검토 필요」로 표시되며, 반드시 원본 이미지와 대조한 뒤 읽기 버튼을 누르세요.</p>
+  <div class="form">
+    <label>제공자
+      <select id="ai-prov"><option value="openai">OpenAI (gpt-4o-mini)</option><option value="anthropic">Anthropic (claude-haiku-5-5)</option></select></label>
+    <label>API 키 <input type="password" id="ai-key" placeholder="키는 이 브라우저에만 저장됩니다" autocomplete="off"></label>
+    <label>추출할 표
+      <select id="ai-target"><option value="spec">제원표 → 1번 칸</option><option value="lift">인양력 표 → 3번 칸</option></select></label>
+    <label>표 이미지 <input type="file" id="ai-img" accept="image/png,image/jpeg,image/webp"></label>
+  </div>
+  <div class="btnrow">
+    <button class="btn" id="ai-save">키 저장</button>
+    <button class="btn" id="ai-forget">키 지우기</button>
+    <button class="btn primary" id="ai-run">이미지에서 초안 만들기</button>
+  </div>
+  <p class="sub">키는 이 브라우저(localStorage)에만 저장되고, 요청은 이 브라우저에서 고른 제공자로 바로 갑니다. 사내 자료를 외부 AI 로 보내기 전에 반출 규정을 확인하세요.</p>
+  <div id="ai-status"></div>
+</section>
+
+<section id="s-conv" class="card">
+  <h2 style="margin-top:0">단위 환산기</h2>
+  <div class="form">
+    <label>종류 <select id="cv-dim"></select></label>
+    <label>값 <input type="number" id="cv-v" value="100" step="any"></label>
+    <label>단위 <select id="cv-from"></select></label>
+    <label>바꿀 단위 <select id="cv-to"></select></label>
+  </div>
+  <div id="cv-out" class="ok"></div>
+</section>
+
+</div></main>
+
+<footer><div class="wrap">
+  생성형 AI 업무자동화 전문가과정 2차수 · 프로젝트 03 · 기획 조민규 ·
+  예제 데이터(A사·B사·C사)는 실제 제조사·실제 제원이 아닙니다.
+</div></footer>
+
+<script src="lib/xlsx.full.min.js"></script>
+<script src="js/spec.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+/* 이 앱 전용 — 공통 style.css 뒤에 읽는다 */
+h3{font-size:16px; font-weight:700; margin:24px 0 8px;}
+.ctrl{display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; margin:6px 0 12px; font-size:14px;}
+.ctrl input,.ctrl select,.form input,.form select,.form textarea{font:inherit; font-size:14px; padding:6px 8px; border:1px solid var(--line); border-radius:7px; background:#fff; max-width:100%;}
+.form textarea{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px; width:100%; resize:vertical; tab-size:12;}
+.form{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr)); gap:10px 12px; align-items:end; margin:14px 0 0;}
+.form label{display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--sub); min-width:0;}
+.form label.wide{grid-column:1/-1;}
+.legend{display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center; font-size:12.5px; color:var(--sub); margin:4px 0 10px;}
+.sw{display:inline-block; width:14px; height:14px; border-radius:3px; vertical-align:-2px; margin-right:5px;}
+.sw.adv,td.adv{background:#dcefe3;} .sw.dis,td.dis{background:#f8dcd5;} .sw.diff,td.diff{background:#fbeec8;}
+
+/* 표시 꼬리표 — 문서 값과 계산·환산·가정 값은 신뢰도가 다르다 */
+.tag{display:inline-block; font-size:10.5px; font-weight:700; border-radius:4px; padding:1px 5px; margin-left:4px; vertical-align:middle; line-height:1.5;}
+.t-conv{color:#0b3a4f; background:#dceaf3;} .t-calc{color:#3b2a74; background:#e6e0f5;}
+.t-assume{color:#7a1a0c; background:#fbe1da;} .t-so{color:#08422a; background:#dcefe3;} .t-ai{color:#7a4f00; background:#fbe7b5;}
+.t-best{color:#fff; background:var(--brand);}
+
+/* 모델 카드 */
+.models{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr)); gap:12px; margin-top:16px;}
+.model{border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:#fbfdff; min-width:0;}
+.model h4{font-size:15px; margin:0 0 4px; display:flex; flex-wrap:wrap; align-items:center; gap:4px;}
+.model .src{font-size:12.5px; color:var(--sub);}
+.model .stats{margin-top:8px;} .model .stat{padding:6px 10px; font-size:12.5px;} .model .stat b{font-size:15px;}
+.model details{margin-top:8px; font-size:13px;}
+.model summary{cursor:pointer; color:var(--accent); font-weight:650;}
+.model ul{margin:6px 0 0 18px;} .model li{margin:3px 0;}
+.model .unk{display:flex; flex-wrap:wrap; gap:6px; align-items:center;}
+.model .unk select{font:inherit; font-size:12.5px; padding:3px 5px; border:1px solid var(--line); border-radius:6px; max-width:100%;}
+.model .acts{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+.btn.sm{min-height:32px; padding:0 11px; font-size:12.5px;}
+.issue{color:#7a1a0c;}
+
+/* 비교표 */
+#cmp td.v{text-align:right; font-variant-numeric:tabular-nums; cursor:pointer; min-width:120px;}
+#cmp td.v:hover{outline:2px solid var(--accent); outline-offset:-2px;}
+#cmp td.v .u{color:var(--sub); font-size:11.5px; margin-left:3px;}
+#cmp td.v .pct{display:block; font-size:11.5px; color:var(--sub);}
+#cmp td.v.best .num{font-weight:800;}
+#cmp td.miss{color:#a0acb8; text-align:center;}
+#cmp tr.grp th{background:#e3eaf1; text-align:left; font-size:12.5px; position:static;}
+#cmp th.base{background:#d9e6f0;}
+#cmp tbody th{background:#f6f8fa; position:sticky; left:0; z-index:1; font-weight:650;}
+.why{margin:12px 0; padding:14px 16px; border-radius:10px; border:1px solid var(--line); border-left:5px solid var(--accent); background:#fff; font-size:14px;}
+.why p{margin:4px 0;}
+.why code{white-space:pre-wrap; word-break:break-all;}
+#feat td.c{text-align:center;}
+
+/* 그래프 — 외부 차트 라이브러리 없이 SVG 로 그린다 */
+.chart svg{width:100%; height:auto; display:block; background:#fff; border:1px solid var(--line); border-radius:10px;}
+svg .ax{font-size:12px; fill:#5b6b7b;} svg .lb{font-size:13px; fill:var(--ink);} svg .vl{font-size:12px; fill:var(--ink); font-variant-numeric:tabular-nums;}
+svg .grid{stroke:#e6ebf0;} svg .zero{stroke:#5b6b7b;}
+svg .bar{fill:#0b6e99;} svg .bar.base{fill:#154b6e;} svg .bar.best{fill:#2c8a6b;}
+svg .bar.adv{fill:#2c8a6b;} svg .bar.dis{fill:#c8341f;} svg .bar.diff{fill:#c79100;} svg .bar.small{fill:#b9c5d1;}
+
+/* 인양력 격자 */
+.lift-grids{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr)); gap:12px; margin:10px 0;}
+.lift-grids h4{font-size:14px; margin:0 0 6px;}
+.lgrid td{text-align:right; font-variant-numeric:tabular-nums;}
+.lgrid td.lim{color:#7a4f00;}
+.lgrid td.up{background:#dcefe3;} .lgrid td.down{background:#f8dcd5;} .lgrid td.na{color:#a0acb8; text-align:center;}
+.lgrid tbody th{background:#f6f8fa; position:static;}
+
+[hidden]{display:none !important;}
+.stat.bad{background:#fdeae7;}

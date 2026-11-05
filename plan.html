@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기획서 — 경쟁사 제원 비교</title>
+<meta name="robots" content="index,follow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.plan-figs figure{margin:0 0 22px;} .plan-figs img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff;}
+.plan-figs figcaption{font-size:13px;color:var(--sub);text-align:center;margin-top:6px;}
+.plan td{white-space:normal;} .plan td .btn{min-height:36px;white-space:nowrap;}
+h3{font-size:15px;margin:16px 0 6px;} main ul{margin:0 0 10px 20px;}
+</style>
+</head>
+<body>
+<nav class="topnav" aria-label="주요 메뉴">
+  <div class="topnav-inner">
+    <a class="topnav-brand" href="index.html">경쟁사 제원 비교 <small>build-2611-03 · 기획 조민규</small></a>
+    <ul class="topnav-links">
+      <li><a href="index.html">도구</a></li>
+      <li><a href="guide.html">사용법</a></li>
+      <li><a href="plan.html" class="active" aria-current="page">기획서</a></li>
+    </ul>
+  </div>
+</nav>
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">생성형 AI 업무자동화 전문가과정 · 2차수 · 프로젝트 03 · 기획서 v1.0</div>
+  <h1>경쟁사 제원 비교 기획서</h1>
+  <p>경쟁사 카탈로그(붙여넣기·글자 PDF·엑셀)의 제원을 표준 항목·표준 단위로 맞춰 모델별 비교표·차이 강조·막대 그래프·Standard/Option 표·인양력 격자 비교를 만들고 엑셀로 내보내는 도구입니다.</p>
+</div></header>
+<main><div class="wrap">
+<div class="card">
+  <h2 style="margin-top:0">기획서 내려받기</h2>
+  <p class="sub">파이프라인 · 아키텍처 · 와이어프레임 · 개발일지가 들어간 워드 문서입니다. 버전마다 따로 남깁니다.</p>
+  <div class="tablewrap plan"><table><thead><tr><th>버전</th><th>날짜</th><th>바뀐 점</th><th>파일</th></tr></thead><tbody><tr><td><b>v1.0</b></td><td>2026-11-02</td><td>첫 판 — 카탈로그 읽기·표준 항목·단위 환산·S/O·비교표·그래프·인양력 격자 비교·엑셀 내보내기 / 기획서 워드 판·파이프라인·아키텍처·와이어프레임 추가</td><td><a class="btn primary" href="docs/기획서/build-2611-03_조민규_경쟁사제원비교_기획서_v1.0.docx" download>워드 내려받기</a></td></tr></tbody></table></div>
+</div>
+<div class="card plan">
+  <h2 style="margin-top:0">요구사항과 구현</h2>
+  <div class="tablewrap"><table><thead><tr><th>기획서 요구</th><th>구현</th></tr></thead><tbody><tr><td>웹페이지·PDF 에 분산된 제원 수집</td><td>붙여넣기 · 글자 PDF(pdf.js, 줄 재구성) · 엑셀(가로 표·세로 표)</td></tr><tr><td>장비 성능 제원(엔진 출력·굴삭력·유압 유량 등)</td><td>표준 항목 10개 — 운전중량·정격출력·버킷 용량·버킷/암 굴삭력·유압 유량·사용압력·주행/선회 속도·연료 탱크</td></tr><tr><td>치수·작업범위 제원</td><td>표준 항목 9개 — 전장·전폭·전고·후방 선회반경·슈 폭·최대 굴삭 깊이/반경/높이·최대 덤프 높이</td></tr><tr><td>제조사별 형식을 표준 데이터로 변환</td><td>항목 별칭 표(ALIASES)·단위 10차원 환산·「단위: mm」 줄·범위 밖 값 경고, 화면에서 별칭 기억</td></tr><tr><td>Standard / Option 구분</td><td>(표준)(옵션)(Std)(Opt)●○·구분 열 → 대표값은 표준, 사양 줄은 S/O 표</td></tr><tr><td>이미지형 인양력 표를 비교 가능한 데이터로</td><td>높이 × 반경 격자(정면/측면·유압 한계·kg/lb·m/ft), 공통 점 비교, 이미지는 AI 초안(선택) 후 사람이 대조</td></tr><tr><td>비교표·시각화·Excel 자동 생성</td><td>기준 대비 차이(%)·유리/불리 강조, 막대 그래프 2종, 엑셀 7시트</td></tr></tbody></table></div>
+</div>
+<div class="card plan-figs"><h2 style="margin-top:0">그림으로 보기</h2><figure><img src="docs/img/pipeline.png" alt="처리 흐름(파이프라인)" loading="lazy"><figcaption>처리 흐름(파이프라인)</figcaption></figure><figure><img src="docs/img/architecture.png" alt="구성(아키텍처)" loading="lazy"><figcaption>구성(아키텍처)</figcaption></figure><figure><img src="docs/img/wireframe-1.png" alt="와이어프레임 — 카탈로그·비교표 화면" loading="lazy"><figcaption>와이어프레임 — 카탈로그·비교표 화면</figcaption></figure><figure><img src="docs/img/wireframe-2.png" alt="와이어프레임 — 인양력 비교 화면" loading="lazy"><figcaption>와이어프레임 — 인양력 비교 화면</figcaption></figure><figure><img src="docs/img/screen.png" alt="실제 화면(예제 데이터)" loading="lazy"><figcaption>실제 화면(예제 데이터)</figcaption></figure></div>
+<div class="card"><h2 style="margin-top:0">개발일지</h2><h3>2026-11-02 · 첫 판</h3><ul><li>패들릿 build02 조민규 「건설기계 경쟁사 제원 조사 자동화」를 작업 지시서(CLAUDE.md)로 옮기고 구현</li><li>엔진 spec.js — 별칭·단위 환산·S/O·가로/세로 엑셀·PDF 줄·비교·인양력 격자</li><li>화면 — 모델 카드·비교표·S/O 표·막대·인양력·AI 초안·환산기·엑셀</li><li>규칙 테스트 90 · 화면 테스트 22 통과</li></ul></div>
+</div></main>
+<footer><div class="wrap">생성형 AI 업무자동화 전문가과정 · 2차수 · 프로젝트 03 · 기획 조민규 · <a href="https://build-2611-00.jobability.co.kr/">2차수 프로젝트 총괄</a></div></footer>
+</body>
+</html>
