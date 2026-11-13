@@ -6,20 +6,26 @@
 <title>경쟁사 제원 비교 — 카탈로그 제원 표준화·인양력 비교</title>
 <meta name="description" content="경쟁사 카탈로그(PDF 텍스트·붙여넣기·엑셀)의 제원을 표준 항목과 표준 단위로 맞춰 모델별 비교표·차이 강조·막대 그래프·인양력 격자 비교를 만들고 엑셀로 내보냅니다. 파일은 브라우저 안에서만 처리합니다.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://build-2611-03.jobability.co.kr/">
+<link rel="canonical" href="https://aebonlee.github.io/build-2611-03/">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="생성형 AI 업무자동화 전문가과정 · 2차수">
-<meta property="og:url" content="https://build-2611-03.jobability.co.kr/">
+<meta property="og:url" content="https://aebonlee.github.io/build-2611-03/">
 <meta property="og:title" content="경쟁사 제원 비교 — 생성형 AI 업무자동화 전문가과정 2차수">
 <meta property="og:description" content="카탈로그 제원을 표준 항목·표준 단위로 맞춰 비교표·차이·그래프·인양력 비교·엑셀을 만듭니다.">
-<meta property="og:image" content="https://build-2611-03.jobability.co.kr/og-index.png">
+<meta property="og:image" content="https://aebonlee.github.io/build-2611-03/og-index.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/app.css">
+<!-- auth-kit: 로그인 전에는 도구 화면을 감춘다(js/auth.js 가 판정 뒤 푼다) -->
+<script>document.documentElement.classList.add('auth-lock')</script>
+<link rel="stylesheet" href="css/auth.css?v=2026-11-13.1">
+<link rel="stylesheet" href="css/board.css?v=2026-11-13.1">
+<link rel="stylesheet" href="css/kit-build.css?v=2026-11-13.1">
+<!-- /auth-kit -->
 </head>
 <body>
 
@@ -164,5 +170,12 @@
 <script src="lib/xlsx.full.min.js"></script>
 <script src="js/spec.js"></script>
 <script src="js/app.js"></script>
+<!-- auth-kit: 로그인 · 사용 신청 · 승인 · 게시판(키트 정본 data10-00/kit/auth, 적용 build-2611-00/tools/kit) -->
+<script src="vendor/supabase.js?v=2026-11-13.1"></script>
+<script src="js/auth-config.js?v=2026-11-13.1"></script>
+<script src="js/kit-build.js?v=2026-11-13.1"></script>
+<script src="js/board.js?v=2026-11-13.1"></script>
+<script src="js/auth.js?v=2026-11-13.1"></script>
+<!-- /auth-kit -->
 </body>
 </html>
